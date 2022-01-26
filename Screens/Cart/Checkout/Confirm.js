@@ -16,9 +16,9 @@ const Confirm = (props) => {
   // Add this
   const [productUpdate, setProductUpdate] = useState();
   useEffect(() => {
-      if(finalOrder) {
-        getProducts(finalOrder);
-      }
+    if (finalOrder) {
+      getProducts(finalOrder);
+    }
     return () => {
       setProductUpdate();
     };
@@ -28,24 +28,24 @@ const Confirm = (props) => {
   const getProducts = (x) => {
     const order = x.order.order;
     var products = [];
-    if(order) {
-        order.orderItems.forEach((cart) => {
-            axios
-              .get(`${baseURL}products/${cart.product}`)
-              .then((data) => {
-                products.push(data.data);
-                setProductUpdate(products);
-              })
-              .catch((e) => {
-                console.log(e);
-              });
+    if (order) {
+      order.orderItems.forEach((cart) => {
+        axios
+          .get(`${baseURL}products/${cart.product}`)
+          .then((data) => {
+            products.push(data.data);
+            setProductUpdate(products);
+          })
+          .catch((e) => {
+            console.log(e);
           });
+      });
     }
-    
   };
 
   const confirmOrder = () => {
     const order = finalOrder.order.order;
+    console.log("Orders:" + order);
     axios
       .post(`${baseURL}orders`, order)
       .then((res) => {
