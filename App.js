@@ -3,6 +3,7 @@ import React from "react";
 import { LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
+import { StripeProvider } from "@stripe/stripe-react-native";
 
 // Redux
 import { Provider } from "react-redux";
